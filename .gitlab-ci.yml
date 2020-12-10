@@ -1,0 +1,58 @@
+build-server:
+  stage: build
+  script:
+    - make server
+  artifacts:
+    paths:
+      - hotTicket-server
+
+build-client:
+  stage: build
+  script:
+    - make client
+  artifacts:
+    paths:
+      - hotTicket
+
+build-tests:
+  stage: build
+  script:
+    - make tests
+
+static:
+  stage: test
+  script:
+    - make static
+
+style:
+  stage: test
+  script:
+    - make style
+
+coverage:
+  stage: test
+  script:
+    - make coverage
+  artifacts:
+    paths:
+      - coverage
+    expire_in: 14 days
+  dependencies:
+    - build-tests
+  coverage: '/Lines executed: \d+ of \d+/'
+
+memcheck:
+  stage: test
+  script:
+    - make memcheck
+
+docs:
+  stage: deploy
+  script:
+    - make docs
+  artifacts:
+    paths:
+      - doxygen/html
+    expire_in: 14 days
+  only:
+    - master

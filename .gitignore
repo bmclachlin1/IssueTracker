@@ -1,0 +1,28 @@
+# Ignore Word Documents
+**/*.doc
+**/*.docx
+
+# Ignore GCOV files
+**/*.gcda
+**/*.gcno
+
+# Ignore executables
+issueServer
+issueClient
+issueTest
+jalapenoServer
+jalapenoClient
+jalapenoTest
+hotTicket-server
+hotTicket
+testProgram
+
+# Ignore VSCode files
+**/.vscode
+
+# Ignore coverage files
+coverage/
+results.*
+
+# Ignore doxygen output
+docs/html/
